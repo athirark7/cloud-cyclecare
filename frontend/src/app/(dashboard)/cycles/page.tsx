@@ -30,7 +30,7 @@ const CyclePage = () => {
     const fetchCycles = async () => {
         if (!token) return;
         try {
-            const response = await fetch('http://localhost:5000/api/cycles', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cycles`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const data = await response.json();
@@ -64,8 +64,8 @@ const CyclePage = () => {
         try {
             const method = editingId ? 'PUT' : 'POST';
             const url = editingId 
-                ? `http://localhost:5000/api/cycles/${editingId}`
-                : 'http://localhost:5000/api/cycles';
+                ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cycles/${editingId}`
+                : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cycles`;
 
             const response = await fetch(url, {
                 method,
@@ -104,7 +104,7 @@ const CyclePage = () => {
 
     const handleDelete = async (id: string) => {
         try {
-            await fetch(`http://localhost:5000/api/cycles/${id}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/cycles/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` },
             });

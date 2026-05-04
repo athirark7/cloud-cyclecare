@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     if (token) {
-      fetch('http://localhost:5000/api/notifications', {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/notifications`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
 
   const markAsRead = async (id: string) => {
     try {
-      await fetch(`http://localhost:5000/api/notifications/${id}/read`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/notifications/${id}/read`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` }
       });

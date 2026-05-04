@@ -27,7 +27,7 @@ const DashboardPage = () => {
     const fetchInsights = async () => {
       if (!token) return;
       try {
-        const response = await fetch('http://localhost:5000/api/dashboard/insights', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/dashboard/insights`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();

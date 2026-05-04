@@ -35,7 +35,7 @@ const SymptomPage = () => {
     const fetchLogs = async () => {
         if (!token) return;
         try {
-            const response = await fetch('http://localhost:5000/api/symptoms/symptoms', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/symptoms/symptoms`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const data = await response.json();
@@ -50,7 +50,7 @@ const SymptomPage = () => {
     const fetchMoods = async () => {
         if (!token) return;
         try {
-            const response = await fetch('http://localhost:5000/api/symptoms/moods', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/symptoms/moods`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             const data = await response.json();
@@ -70,7 +70,7 @@ const SymptomPage = () => {
     const handleLogSymptom = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/symptoms/symptoms', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/symptoms/symptoms`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ const SymptomPage = () => {
     const handleLogMood = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/symptoms/moods', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/symptoms/moods`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ const SymptomPage = () => {
 
     const handleDelete = async (id: string, type: 'symptom' | 'mood') => {
         try {
-            await fetch(`http://localhost:5000/api/symptoms/${type}s/${id}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/symptoms/${type}s/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` },
             });
